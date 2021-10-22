@@ -4,7 +4,7 @@ Installation (NeoRS only works on Mac/Linux):
 	- FSL: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX
 	- SPM12: https://www.fil.ion.ucl.ac.uk/spm/software/download/ 
 	- Mantis: http://developmentalimagingmcri.github.io/mantis/installation/
-        -  AFNI: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/steps_mac.html
+        - AFNI: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/steps_mac.html
 
 
 2. The easiest way to setup the environment is by launching Matlab from your terminal every time you want to use NeoRS.
