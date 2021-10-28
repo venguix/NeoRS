@@ -1,4 +1,5 @@
-#NeoRS: Neonatal resting state fMRI preprocessing toolbox
+# NeoRS: Neonatal resting state fMRI preprocessing toolbox
+
 Allows spatial normalization, skull stripping, T2w segmentation, functional cross-realignment, slice timing correction, unwarping, functional denoising and 1st level analysis based on seeds.
 
 
