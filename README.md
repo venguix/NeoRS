@@ -7,11 +7,10 @@ Allows spatial normalization, skull stripping, T2w segmentation, functional cros
 ### NeoRS has been developed for Mac or Linux 
 
 #### 1. Before using NeoRS you need to install:
-	- FSL: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX
-	- SPM12: https://www.fil.ion.ucl.ac.uk/spm/software/download/ 
-	- Mantis: http://developmentalimagingmcri.github.io/mantis/installation/
-        - AFNI: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/steps_mac.html
-
+	· FSL: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX
+	· SPM12: https://www.fil.ion.ucl.ac.uk/spm/software/download/ 
+	· Mantis: http://developmentalimagingmcri.github.io/mantis/installation/
+	· AFNI: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/steps_mac.html
 
 #### 2. The easiest way to setup the environment is by launching Matlab from your terminal every time you want to use NeoRS.
 To do it easily, we have created a shell script:
@@ -28,8 +27,8 @@ Before running the first baby remember that
   - Data must be in BIDS structure: https://bids.neuroimaging.io
  
               Data/  sub-xxx1/ anat/ sub-xxx1_T2w.nii
-                                         fmap/ sub-xxx1_task-rest_AP_run_001_bold.nii
-                                         func/ sub-xxx1_AP_se-epi.nii
+                               fmap/ sub-xxx1_task-rest_AP_run_001_bold.nii
+                               func/ sub-xxx1_AP_se-epi.nii
  
 
 ## Setting up NeoRS
