@@ -44,4 +44,5 @@ Before running the first baby remember that
 
 ## Example final results
 ### Seed-Based Correlations
+![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/SBC_RSN.png)
 
