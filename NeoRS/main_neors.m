@@ -97,7 +97,7 @@ for i=1:length(data)
             % Motion censoring
             [motion_censored_bold]=motion_censoring(subject,n);
             %confound regression
-            confounds_regression( subject, workingDir,neors_path,n,options,motion_censored_bold)
+            confounds_regression( subject, workingDir,n,options,motion_censored_bold)
             % Spatial smoothing
             smoothing(subject,n,FWHM);
             % Mask final bold

@@ -1,4 +1,4 @@
-function [  ] = confounds_regression( subject, workingDir,neors_path,c,options,motion_censored_bold )
+function [  ] = confounds_regression( subject, workingDir,c,options,motion_censored_bold )
 
 TR=options.TR;
 
