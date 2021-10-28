@@ -40,4 +40,4 @@ Before running the first baby remember that
 - You can then run the RUN section of the pipeline 
 
 ## NeoRS workflow
-
+![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/workflow.png)
