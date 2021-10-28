@@ -38,3 +38,6 @@ Before running the first baby remember that
 (i.e. ('/Volumes/TOSHIBA_HD/BCP_babies_processed_4/');
 - In the INPUTS section of the script you can modify the variables to adjust them to your data
 - You can then run the RUN section of the pipeline 
+
+## NeoRS workflow
+
