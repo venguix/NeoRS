@@ -1,15 +1,12 @@
-function [FD,output,ts,rms,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n, FD_max, mFD_all)
+function [FD,output,ts,rms,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n)
 
+mFD_all=[];
 
 if options.slicetimingcorrection == 1
 input=[subject '/Output_files/slc_' RS(n).name];
 display('Coregistering slc BOLD ...')
 else
- if options.scfmri == 1    
- input=[subject '/Output_files/sc_' RS(n).name];
- else
  input=[subject '/Output_files/reoriented_' RS(n).name];  
- end
 end 
  
 
@@ -31,7 +28,7 @@ system(['mv ' output '.nii.gz ' subject '/Output_files/Motion_Corrected_' num2st
 
 cd(folder)
 ctg.motionparam='cross_realignRS.par';
-[FD,rms,ts]=bramila_framewiseDisplacement(ctg,options,input);
+[FD,rms,ts]=bramila_framewiseDisplacement(ctg,options);
 save('FD_power.1D','FD','-ascii')
 mFD=mean(FD);
 save('meanFD_power.1D','mFD','-ascii');
@@ -41,7 +38,6 @@ save('maxFD.1D','FD_maximum','-ascii');
 
 save('FD_vector.1D','FD','-ascii');
 
-%cd(workingDir)
 
 
 f = figure('visible','off');
@@ -67,7 +63,9 @@ plot(FD,'-b'),title('Framewise Displacement'),legend('FD')
 N=length(ts);
 count=0;
 position=[];
-%FD_max=0.25;
+
+FD_max=options.FD_max;
+
 for ii=1:N
   if FD(ii)>FD_max
       count=count+1;

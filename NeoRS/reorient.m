@@ -1,4 +1,4 @@
-function [] = reorient( subject,options,RS,n,T2 )
+function [] = reorient( subject,RS,n,T2 )
 
 
 input_T2=[subject '/anat/' T2];

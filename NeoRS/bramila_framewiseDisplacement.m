@@ -1,4 +1,4 @@
-function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg,options,input)
+function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg,options)
 
 % BRAMILA_FRAMEWISEDISPLACEMENT - Computes the framewise displacement
 % metric as described in 
@@ -38,10 +38,8 @@ function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg,options,input)
         prepro_suite = cfg.prepro_suite;
     end
     
-    radius=50; % default radius
-    if(isfield(cfg,'radius'))
-        radius = cfg.radius;
-    end    
+    radius=options.radius; 
+       
     
     if(strcmp(prepro_suite,'fsl-fs'))
         % convert radians into motion in mm

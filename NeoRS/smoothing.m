@@ -1,4 +1,6 @@
-function [ ] = smoothing( subject,c,FWHM )
+function [ ] = smoothing( subject,c,options )
+
+FWHM=options.FWHM;
 
 input=[subject '/Output_files/filtered_BOLD_' num2str(c)];
 output=[subject '/Output_files/smoothBOLD' num2str(c)];

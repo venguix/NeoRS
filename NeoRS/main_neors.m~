@@ -1,28 +1,25 @@
-%% SETUP
-clear all; clc
-[atlas1mm,atlas3mm, ROI ] = setup_neors();
 %% INPUTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[atlas1mm,atlas3mm, ROI ] = setup_neors();
+
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
 options.fmap = 1; %Functional distortion correction
 options.best_volumes = 0; %Select a region of the times-series with the lowest average framewise displacement
 
 %Inputs definition
-workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4'); % Path where data is located
 options.TR=0.8;%Repetition time of the RS sequence in seconds
 options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5; %1: bottom up, 2: top down, 3: interleaved+bottom up, 4: interleaved+top down, 5:automatically read json file
 options.FWHM=6; %FWMH for functional gaussian smoothing
 options.radius=35; %Head radius
 options.FD_max=0.25; % Framewise displacement threshold
-options.n_core=2; %Number of cores for parallel computing
-%parpool(options.n_core);
-
+options.n_core=1; %Number of cores for parallel computing
+parpool(options.n_core);
+workingDir=('/Users/vicenteenguix/Desktop/data_test/'); % add / to the end
 cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
-[data ] = read_data();
 parfor i=1:length(data)
    
     subject=data(i).name;

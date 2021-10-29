@@ -1,6 +1,6 @@
 function [ ] = segmentation_mantis2(workingDir,subject)
 %%
-path2=([workingDir subject '/Segmentations/scT2.nii,1']);
+path2=([workingDir '/' subject '/Segmentations/scT2.nii,1']);
 
 
 %Mantis
