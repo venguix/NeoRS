@@ -1,4 +1,4 @@
-function [ data ] = read_data( )
+function [ data ] = read_data()
 % Read data
 data = dir();
 data(strncmp({data.name}, '.', 1)) = [];

@@ -1,22 +1,16 @@
-function [atlas, ROI ] = setup_neors(neors_path)
+function [atlas1mm,atlas3mm, ROI ] = setup_neors()
 
 warning off
 
-% set FSL environment
-setenv( 'FSLDIR', '/usr/local/fsl');
-fsldir = getenv('FSLDIR');
-fsldirmpath = sprintf('%s/etc/matlab',fsldir);
-path(path, fsldirmpath);
-clear fsldir fsldirmpath;
-
-setenv('FSLOUTPUTTYPE', 'NIFTI_GZ'); 
-nifti_tools_path=[neors_path '/NIfTI_20140122'];
-addpath(nifti_tools_path)
+neors_path=('/Users/vicenteenguix/Desktop/NeoRS/NeoRS');
+addpath(genpath(neors_path));
 
 % Load Atlas
 atlas=[neors_path '/atlases/atlases_st_louis/'];
 ROI=[neors_path '/atlases/ROI'];
 
+atlas1mm=[atlas 'term_N10_t2w_on_711-2N_111.nii.gz'];
+atlas3mm=[atlas 'term_N10_t2w_on_711-2N_333.nii.gz'];
 
 end
 

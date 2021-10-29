@@ -1,10 +1,12 @@
 %% INPUTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Path where NeoRS folder is located
-neors_path=('/Users/vicenteenguix/Documents/MATLAB/NeoRS');
-addpath(neors_path)
+neors_path=('/Users/vicenteenguix/Desktop/NeoRS/NeoRS');
+addpath(genpath(neors_path));
 
-workingDir=('/Users/vicenteenguix/Desktop/BCP_babies_processed_4/');
+[atlas1mm,atlas3mm, ROI ] = setup_neors();
+
+workingDir=('/Users/vicenteenguix/Desktop/data_test/'); % add / to the end
 
 options.TR=0.8;%Repetition time of the RS sequence in seconds
 options.motion=24;
@@ -20,12 +22,9 @@ FD_max=0.25;
 mFD_all=[];
 FWHM=6; %for functional gaussian smoothing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 cd (workingDir)
-[atlas, ROI ] = setup_neors(neors_path);
-[data ] = read_data( );
-
-atlas1mm=[atlas 'term_N10_t2w_on_711-2N_111.nii.gz'];
-atlas3mm=[atlas 'term_N10_t2w_on_711-2N_333.nii.gz'];
+[data ] = read_data();
 
 %options.n_core=1;
 %parpool(options.n_core);
