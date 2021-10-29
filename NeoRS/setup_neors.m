@@ -2,8 +2,7 @@ function [atlas1mm,atlas3mm, ROI ] = setup_neors()
 
 warning off
 
-neors_path=('/Users/vicenteenguix/Desktop/NeoRS/NeoRS');
-addpath(genpath(neors_path));
+neors_path=which('main_neors');
 
 % Load Atlas
 atlas=[neors_path '/atlases/atlases_st_louis/'];

@@ -1,9 +1,5 @@
 %% INPUTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Path where NeoRS folder is located
-neors_path=('/Users/vicenteenguix/Desktop/NeoRS/NeoRS');
-addpath(genpath(neors_path));
-
 [atlas1mm,atlas3mm, ROI ] = setup_neors();
 
 workingDir=('/Users/vicenteenguix/Desktop/data_test/'); % add / to the end
