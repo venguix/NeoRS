@@ -20,8 +20,7 @@ To do it easily, we have created a shell script:
 
 Note: to setup matlab to be easily opened via terminal:
 1. nano .bash_profile
-2. export PATH=/Applications/MATLAB_R2015a.app/bin/:$PATH
-Replace (2) by your own path
+2. export PATH=/Applications/MATLAB_R2015a.app/bin/:$PATH  -> Use your Matlab path
 3. Quit the bash_profile
 4. Still in the terminal: source ~/.bash_profile
 
