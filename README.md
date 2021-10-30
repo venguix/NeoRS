@@ -19,13 +19,13 @@ To do it easily, we have created a shell script:
  3. Double click neors.sh to open matlab and the script
 
 Note: to setup matlab to be easily opened via terminal:
-	1. nano .bash_profile
-	2. export PATH=/Applications/MATLAB_R2015a.app/bin/:$PATH
-	Replace (2) by your own path
-	3. Quit the bash_profile
-	4. Still in the terminal: source ~/.bash_profile
+1. nano .bash_profile
+2. export PATH=/Applications/MATLAB_R2015a.app/bin/:$PATH
+Replace (2) by your own path
+3. Quit the bash_profile
+4. Still in the terminal: source ~/.bash_profile
 
-### 3. Before running the the pipeline, remember
+### 3. Before running the the pipeline, remember:
 
   - Data must be nifti format
   - Data must be in BIDS structure: https://bids.neuroimaging.io
