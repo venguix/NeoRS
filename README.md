@@ -14,14 +14,18 @@ Allows spatial normalization, skull stripping, T2w segmentation, functional cros
 
 #### 2. The easiest way to setup the environment is by launching Matlab from your terminal every time you want to use NeoRS.
 To do it easily, we have created a shell script:
- - Open the file neors.sh and change to path where Matlab app and NeoRS are located -> save the file
- - Right click in the file neors.sh > open with > other > all applications > Terminal (always open with)
- - You launch Matlab with the NeoRS script opened by just double-clicking in the file neors.sh
-Note: you can move this file to your desktop for example
+ 1. In the terminal: chmod a+x neors.sh
+ 2. Right click in the file neors.sh > open with > other > all applications > Terminal (always open with)
+ 3. Double click neors.sh to open matlab and the script
 
-Now you are ready to use the toolbox.
+Note: to setup matlab to be easily opened via terminal:
+	1. nano .bash_profile
+	2. export PATH=/Applications/MATLAB_R2015a.app/bin/:$PATH
+	Replace (2) by your own path
+	3. Quit the bash_profile
+	4. Still in the terminal: source ~/.bash_profile
 
-Before running the first baby remember that
+### 3. Before running the the pipeline, remember
 
   - Data must be nifti format
   - Data must be in BIDS structure: https://bids.neuroimaging.io
@@ -29,15 +33,9 @@ Before running the first baby remember that
               Data/  sub-xxx1/ anat/ sub-xxx1_T2w.nii
                                fmap/ sub-xxx1_task-rest_AP_run_001_bold.nii
                                func/ sub-xxx1_AP_se-epi.nii
- 
 
-## Setting up NeoRS
- - Put the atlases folder inside the NeoRS folder
- - In the main NeoRS script called main_neors.m you need to set the path where NeoRS folder is located (this only needs to be changed once)
- - Then, every time you want to process a different dataset the path where the data is located needs to be modified in the variable workingDir
-(i.e. ('/Volumes/TOSHIBA_HD/BCP_babies_processed_4/');
-- In the INPUTS section of the script you can modify the variables to adjust them to your data
-- You can then run the RUN section of the pipeline 
+  - Open main_neors.m and modify the INPUTS to adapt them to your data
+  - You can now RUN Neors
 
 ## NeoRS workflow
 ![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/workflow.png)

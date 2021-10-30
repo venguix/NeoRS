@@ -70,7 +70,7 @@ parfor i=1:length(data)
 
         % UNWARPING
         % -inindex: 1 for AP, 2 for PA
-        fmap2(subject,RS,nRS,options) %remember to put the "datain.txt" if there is no json file
+        fmap2(subject,RS,nRS,options) %remember to put the "datain.txt" in the fmap folder if there is no json file
         % BOLD to template
         epi2std(subject,nRS,options)
 
