@@ -9,7 +9,7 @@ options.fmap = 1; %Functional distortion correction
 options.best_volumes = 0; %Select a region of the times-series with the lowest average framewise displacement
 
 %Inputs definition
-workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4'); % Path where data is located
+workingDir=('/Users/vicenteenguix/Desktop/data_test'); % Path where data is located
 options.TR=0.8;%Repetition time of the RS sequence in seconds
 options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5; %1: bottom up, 2: top down, 3: interleaved+bottom up, 4: interleaved+top down, 5:automatically read json file
@@ -30,12 +30,8 @@ parfor i=1:length(data)
     RS(strncmp({RS.name}, '.', 1)) = [];
     nRS=length(RS);
 
-    T2=dir([subject '/anat/*T2w.nii*']);
-    T2(strncmp({T2.name}, '.', 1)) = [];
-    T2=T2.name(1:end-4);
-
     % MANTIS preparation
-    gunzip_T2(subject)
+    T2=gunzip_T2(subject)
 
     % Data reorientation to standard
     reorient(subject,RS,nRS,T2)
