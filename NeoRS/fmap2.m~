@@ -55,6 +55,7 @@ iout=[subject '/fmap/se_epi_unwarped'];
 cmd=['topup --imain=' out_b0 ' --datain=' datain ' --config=b02b0.cnf --fout=' fout ' --iout=' iout ];
 system(cmd)
 
+
 %AP
 topup=[subject '/fmap/b0_results'];
 %Añadir al nombre: b0_results_movpar.txt, b0_results_fieldcoef.nii.gz
@@ -67,23 +68,27 @@ cmd2=['cp ' name2 ' ' newName2 ];
 system(cmd1)
 system(cmd2)
 
+
+
 for n=1:old_nRS
     if badRuns(n) == 0
     data_in=[subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.nii.gz'];
-    data_out=[subject '/Output_files/Unwarped_' num2str(n)];
-
-    if any(strfind(RS(n).name,'AP'))
-    index=1
-    else 
-    index=2
+    else
+    n=n+1;
     end
 
-    cmd=['applytopup --imain=' data_in ' --inindex=' num2str(index) ' --datain=' datain ' --topup=' topup ' --out=' data_out ' --method=jac --interp=spline'];
-    system(cmd)
-    display(['Unwarped run ' num2str(n)])
-    end
+data_out=[subject '/Output_files/Unwarped_' num2str(n)];
+
+if any(strfind(RS(n).name,'AP'))
+index=1
+else 
+index=2
+end
 
 
+cmd=['applytopup --imain=' data_in ' --inindex=' num2str(index) ' --datain=' datain ' --topup=' topup ' --out=' data_out ' --method=jac --interp=spline'];
+system(cmd)
+display(['Unwarped run ' num2str(n)])
 end
 
 end

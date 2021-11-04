@@ -5,7 +5,8 @@ clear all; clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
-options.fmap = 1; %Functional distortion correction
+options.fmap = 0; %Functional distortion correction
+options.best_volumes = 0; %Select a region of the times-series with the lowest average framewise displacement
 
 %Inputs definition
 workingDir=('/Users/vicenteenguix/Desktop/data_test'); % Path where data is located
@@ -22,7 +23,7 @@ cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
 [data ] = read_data();
-parfor i=2:length(data)
+parfor i=1:length(data)
    
     subject=data(i).name;
     RS=dir([subject '/func/*bold.nii*']);
@@ -59,31 +60,34 @@ parfor i=2:length(data)
        % REMOVE RUNS WITH mean FD > 0.25 mm
        [badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
        
-    if nRS > 0     
+    if nRS > 0 
+        for ii=1:old_nRS
+            if badRuns(ii) == 0
             % UNWARPING
             % -inindex: 1 for AP, 2 for PA
-            fmap2(subject,RS,nRS,options,badRuns,old_nRS) %remember to put the "datain.txt" in the fmap folder if there is no json file
-            % BOLD to template
-            epi2std2(subject,old_nRS,options,badRuns)
+            fmap2(subject,RS,nRS,options) %remember to put the "datain.txt" in the fmap folder if there is no json file
+            
+            end
+        end
+            
         
             % DENOISING
-            for n=1:old_nRS
-                if badRuns(n) == 0
-                %Create brain mask
-                [ bold_mask ] = mask_functional( subject,n );
-                % Whole brain mode value of 1000 - Normalization
-                %[BOLD1000] = intensity_normalization( subject,c,motion_censored_bold );
-                % Motion censoring
-                [motion_censored_bold]=motion_censoring(subject,n);
-                %confound regression
-                confounds_regression( subject, workingDir,n,options,motion_censored_bold)
-                % Spatial smoothing
-                smoothing(subject,n,options);
-                % Mask final bold
-                [final_bold] = mask_final( subject,n );
-                end
-            end
+            for n=1:nRS
+            %Create brain mask
+            [ bold_mask ] = mask_functional( subject,n );
+            % Whole brain mode value of 1000 - Normalization
+            %[BOLD1000] = intensity_normalization( subject,c,motion_censored_bold );
+            % Motion censoring
+            [motion_censored_bold]=motion_censoring(subject,n);
+            %confound regression
+            confounds_regression( subject, workingDir,n,options,motion_censored_bold)
+            % Spatial smoothing
+            smoothing(subject,n,options);
+            % Mask final bold
+            [final_bold] = mask_final( subject,n );
+        end
 
+  
 
         % MERGE ALL RUNS in a single file
         merge_bold_runs(subject,nRS)
