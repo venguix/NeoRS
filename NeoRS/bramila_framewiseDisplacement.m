@@ -38,7 +38,7 @@ function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg,options)
         prepro_suite = cfg.prepro_suite;
     end
     
-    radius=options.radius; 
+    radius=0.5;%options.radius; 
        
     
     if(strcmp(prepro_suite,'fsl-fs'))

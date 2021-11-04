@@ -1,7 +1,7 @@
 function [ ] = epi2std(subject, nRS,options)
 
-for c=1:nRS 
-    
+for c=1:old_nRS   
+  if badRuns(c) == 0 
     if options.fmap == 1
     input=[subject '/Output_files/Unwarped_' num2str(c) '.nii.gz'];
     else

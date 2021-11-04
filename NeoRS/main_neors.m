@@ -65,6 +65,7 @@ parfor i=2:length(data)
             fmap2(subject,RS,nRS,options,badRuns,old_nRS) %remember to put the "datain.txt" in the fmap folder if there is no json file
             % BOLD to template
             epi2std2(subject,old_nRS,options,badRuns)
+            %epi2std(subject,old_nRS,options,badRuns)
         
             % DENOISING
             for n=1:old_nRS
