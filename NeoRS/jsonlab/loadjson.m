@@ -23,7 +23,7 @@ function data = loadjson(fname,varargin)
 %      fname: input file name, if fname contains "{}" or "[]", fname
 %             will be interpreted as a JSON string
 %      opt: a struct to store parsing options, opt can be replaced by 
-%           a list of ('param',value) pairs - the param string is equivalent
+%           a list of ('param',value) pairs - the param string is equivallent
 %           to a field in opt. opt can have the following 
 %           fields (first in [.|.] is the default)
 %
@@ -45,6 +45,7 @@ function data = loadjson(fname,varargin)
 %                         array of 1D vectors; setting to 4 will return a
 %                         3D cell array.
 %           opt.ShowProgress [0|1]: if set to 1, loadjson displays a progress bar.
+%           opt.ParseStringArray [0|1]: if set to 1, loadjson displays a progress bar.
 %
 % output:
 %      dat: a cell array, where {...} blocks are converted into cell arrays,
@@ -215,7 +216,16 @@ function object = parse_array(inStr, esc, varargin) % JSON array is written in r
            if(isoct && regexp(arraystr,'"','once'))
                 error('Octave eval can produce empty cells for JSON-like input');
            end
+           if(regexp(arraystr,':','once'))
+                error('One can not use MATLAB-like ":" construct inside a JSON array');
+           end
+           if(jsonopt('ParseStringArray',0,varargin{:})==0)
+               arraystr=regexprep(arraystr,'\"','''');
+           end
            object=eval(arraystr);
+           if(iscell(object))
+               object=cellfun(@unescapejsonstring,object,'UniformOutput',false);
+           end
            pos=endpos;
         catch
          while 1
@@ -338,6 +348,7 @@ function str = parseStr(inStr, esc, varargin)
                 pos = pos + 1;
         end
     end
+    str=unescapejsonstring(str);
     error_pos('End of file while expecting end of inStr',inStr);
 
 %%-------------------------------------------------------------------------
@@ -499,3 +510,14 @@ end
 if(endpos==0) 
     error('unmatched "]"');
 end
+
+function newstr=unescapejsonstring(str)
+newstr=str;
+if(~ischar(str))
+    return;
+end
+escapechars={'\\','\"','\/','\a','\b','\f','\n','\r','\t','\v'};
+for i=1:length(escapechars);
+    newstr=regexprep(newstr,regexprep(escapechars{i},'\\','\\\\'), escapechars{i});
+end
+newstr=regexprep(newstr,'\\u([0-9A-Fa-f]{4})', '${char(base2dec($1,16))}');
