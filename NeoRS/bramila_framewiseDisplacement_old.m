@@ -1,4 +1,10 @@
-function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg)
+function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg,options,input)
+%%%%%%%% VTE INPUTS %%%%%%%%%%
+% folder='/Users/vicente/Desktop/data/Test_2';
+% cd(folder);
+% cfg.motionparam='cross_realigned_BOLD.par';
+% cfg.radius=35;
+
 
 % BRAMILA_FRAMEWISEDISPLACEMENT - Computes the framewise displacement
 % metric as described in 
@@ -38,8 +44,10 @@ function [fwd,rms,ts]=bramila_framewiseDisplacement(cfg)
         prepro_suite = cfg.prepro_suite;
     end
     
-    radius=50; 
-       
+    radius=50; % default radius
+    if(isfield(cfg,'radius'))
+        radius = cfg.radius;
+    end    
     
     if(strcmp(prepro_suite,'fsl-fs'))
         % convert radians into motion in mm

@@ -115,12 +115,5 @@ path2=[path,confounders2 '/' reg_type]; %FSL motion censoring
 command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz'];
 unix(command10);
 
-
-
-
-
-
-
-
 end
 

@@ -16,10 +16,9 @@ output=[subject '/Output_files/cross_realignRS'];
 folder=[subject '/Output_files/Motion_Corrected_' num2str(n)];
 mkdir('./',folder);
 
-tic
 mcflirt_cmd=['mcflirt -in ' input ' -out ' output ' -sinc_final -mats -plots -refvol 0 -smooth 0'];%-smooth 1 by default
-system(mcflirt_cmd)
-toc
+%system(mcflirt_cmd)
+
 
 system(['mv ' output '.mat ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.mat'])
 system(['mv ' output '.par ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.par'])
@@ -28,7 +27,7 @@ system(['mv ' output '.nii.gz ' subject '/Output_files/Motion_Corrected_' num2st
 
 cd(folder)
 ctg.motionparam='cross_realignRS.par';
-[FD,rms,ts]=bramila_framewiseDisplacement(ctg,options);
+[FD,rms,ts]=bramila_framewiseDisplacement(ctg)
 save('FD_power.1D','FD','-ascii')
 mFD=mean(FD);
 save('meanFD_power.1D','mFD','-ascii');
@@ -37,7 +36,6 @@ FD_maximum=max(FD); %variable F_max is for the maximum FD allowed (threshold)
 save('maxFD.1D','FD_maximum','-ascii');
 
 save('FD_vector.1D','FD','-ascii');
-
 
 
 f = figure('visible','off');

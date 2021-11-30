@@ -8,7 +8,7 @@ options.slicetimingcorrection=1; %Slice timing correction
 options.fmap = 1; %Functional distortion correction
 
 %Inputs definition
-workingDir=('/Users/vicenteenguix/Desktop/data_test'); % Path where data is located
+workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4'); % Path where data is located
 options.TR=0.8;%Repetition time of the RS sequence in seconds
 options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5; %1: bottom up, 2: top down, 3: interleaved+bottom up, 4: interleaved+top down, 5:automatically read json file
@@ -22,7 +22,8 @@ cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
 [data ] = read_data();
-parfor i=2:length(data)
+tic
+for i=1:length(data)
    
     subject=data(i).name;
     RS=dir([subject '/func/*bold.nii*']);
@@ -103,3 +104,5 @@ parfor i=2:length(data)
     end
 
 end
+
+toc
