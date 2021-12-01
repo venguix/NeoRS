@@ -1,4 +1,4 @@
-function [FD,output,ts,rms,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n)
+function [FD,output,motion_detrended,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n)
 
 mFD_all=[];
 
@@ -16,8 +16,8 @@ output=[subject '/Output_files/cross_realignRS'];
 folder=[subject '/Output_files/Motion_Corrected_' num2str(n)];
 mkdir('./',folder);
 
-mcflirt_cmd=['mcflirt -in ' input ' -out ' output ' -sinc_final -mats -plots -refvol 0 -smooth 0'];%-smooth 1 by default
-%system(mcflirt_cmd)
+mcflirt_cmd=['mcflirt -in ' input ' -out ' output ' -sinc_final -mamotion_detrended -plomotion_detrended -refvol 0 -smooth 0'];%-smooth 1 by default
+system(mcflirt_cmd)
 
 
 system(['mv ' output '.mat ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.mat'])
@@ -26,9 +26,10 @@ system(['mv ' output '.nii.gz ' subject '/Output_files/Motion_Corrected_' num2st
 
 
 cd(folder)
-ctg.motionparam='cross_realignRS.par';
-[FD,rms,ts]=bramila_framewiseDisplacement(ctg)
+options.motionparameters='cross_realignRS.par';
+[FD,motion_detrended]=framewiseDisplacement(options)
 save('FD_power.1D','FD','-ascii')
+save('cross_realignRS_detrend.par','motion_detrended','-ascii')
 mFD=mean(FD);
 save('meanFD_power.1D','mFD','-ascii');
 
@@ -40,16 +41,16 @@ save('FD_vector.1D','FD','-ascii');
 
 f = figure('visible','off');
 subplot(3,1,1),hold on
-plot(ts(:,1),'-b')
-plot(ts(:,2),'-g')
-plot(ts(:,3),'-r')
+plot(motion_detrended(:,1),'-b')
+plot(motion_detrended(:,2),'-g')
+plot(motion_detrended(:,3),'-r')
 legend('x','y','z')
 title('Estimated rotation (radians)')
 
 subplot(3,1,2), hold on
-plot(ts(:,4),'-b')
-plot(ts(:,5),'-g')
-plot(ts(:,6),'-r')
+plot(motion_detrended(:,4),'-b')
+plot(motion_detrended(:,5),'-g')
+plot(motion_detrended(:,6),'-r')
 legend('x','y','z')
 title('Estimated translation (mm)')
 
@@ -58,7 +59,7 @@ plot(FD,'-b'),title('Framewise Displacement'),legend('FD')
 
 
 % Number of frames with lower FD than 0.25 mm 
-N=length(ts);
+N=length(motion_detrended);
 count=0;
 position=[];
 

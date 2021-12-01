@@ -54,7 +54,7 @@ for i=1:length(data)
 
     for n=1:nRS
         %Cross realignment
-        [FD,output,ts,rms,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n);%  Frame displacement
+        [FD,output,motion_detrended,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n);%  Frame displacement
     end
 
        % REMOVE RUNS WITH mean FD > 0.25 mm
@@ -79,6 +79,7 @@ for i=1:length(data)
                 [motion_censored_bold]=motion_censoring(subject,n);
                 %confound regression
                 confounds_regression( subject, workingDir,n,options,motion_censored_bold)
+                %confounds_regression2( subject, workingDir,n,options,motion_censored_bold)
                 % Spatial smoothing
                 smoothing(subject,n,options);
                 % Mask final bold
