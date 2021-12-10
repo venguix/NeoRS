@@ -6,7 +6,7 @@ for c=1:old_nRS
     if options.fmap == 1
     input=[subject '/Output_files/Unwarped_' num2str(c) '.nii.gz'];
     else
-    input=[subject '/Output_files/Motion_corrected_' num2str(c) '/cross_realignRS.nii.gz'];
+    input=[subject '/Output_files/Motion_Corrected_' num2str(c) '/cross_realignRS.nii.gz'];
     end
 
     mean=([subject '/Output_files/mean_BOLD' num2str(c) '.nii.gz']);
