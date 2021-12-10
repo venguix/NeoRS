@@ -5,7 +5,7 @@ function [FD,data_detrended]=framewiseDisplacement(options)
     data=double(motion);
     data_detrended=detrend(data); %linear-demean; demean and detrend as per Power et al 2014
 
-        radius=50;
+        radius=35;
         % radians into motion in mm
         r=data_detrended(:,1:3); % rotations columns 1,2,3
         r=radius*r;

@@ -26,19 +26,19 @@ global_out=[subject '/Output_files/global.1D'];
 
 %csf
 cmd=['3dmaskave -mask ' csf_in ' -quiet ',input,'.nii.gz > ' csf_out];
-unix(cmd);
+system(cmd);
 %wm
 cmd=['3dmaskave -mask ' wm_in ' -quiet ',input,'.nii.gz > ' wm_out];
-unix(cmd);
+system(cmd);
 %global signal (GM)
 cmd=['3dmaskave -mask ' global_in ' -quiet ',input,'.nii.gz > ' global_out];
-unix(cmd);
+system(cmd);
 
 %MOTION PARAMETERS
 motion_folder=[subject '/Output_files/Motion_Corrected_' num2str(c) '/'];
 %6 motion parameters
 out=[motion_folder 'motion.1D'];
-unix(['1dcat ',motion_folder,'cross_realignRS_detrend.par > ' out]);
+system(['1dcat ',motion_folder,'cross_realignRS_detrend.par > ' out]);
 %12 motion parameters
 Motion_Corrected=load([motion_folder,'cross_realignRS_detrend.par']);
 derivative=Motion_Corrected(2:end,:)-Motion_Corrected(1:(end-1),:);
@@ -85,14 +85,14 @@ movefile(b3,[path '/' confounders2]);
 % Create single txt file with all confounder vectors
 cd(path)
 cd(confounders2)
-unix(['1dcat csf.1D wm.1D > csf_wm.1D']); %csf+wm
-unix(['1dcat csf_wm.1D global.1D > csf_wm_global.1D']); %csf+wm+global signal
-unix(['1dcat csf_wm_global.1D motion.1D > Total_6movement.1D']); %csf+wm+global+6 motion
+system(['1dcat csf.1D wm.1D > csf_wm.1D']); %csf+wm
+system(['1dcat csf_wm.1D global.1D > csf_wm_global.1D']); %csf+wm+global signal
+system(['1dcat csf_wm_global.1D motion.1D > Total_6movement.1D']); %csf+wm+global+6 motion
 
-unix(['1dcat global.1D motion.1D > global_motion.1D']); 
-unix(['1dcat global.1D motion.1D csf.1D > no_wm.1D']);
-unix(['1dcat csf_wm_global.1D 12_motion_parameters.1D > Total_12movement.1D']); %csf+wm+global+12 motion
-unix(['1dcat csf_wm_global.1D Friston24_motion_parameters.1D > Total_24movement.1D']);%csf+wm+global+24 motion
+system(['1dcat global.1D motion.1D > global_motion.1D']); 
+system(['1dcat global.1D motion.1D csf.1D > no_wm.1D']);
+system(['1dcat csf_wm_global.1D 12_motion_parameters.1D > Total_12movement.1D']); %csf+wm+global+12 motion
+system(['1dcat csf_wm_global.1D Friston24_motion_parameters.1D > Total_24movement.1D']);%csf+wm+global+24 motion
 cd(workingDir)
 
 %Regression + BPF
@@ -113,7 +113,7 @@ path2=[path,confounders2 '/' reg_type]; %FSL motion censoring
 
 %command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz -dt ' num2str(TR)];
 command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz'];
-unix(command10);
+system(command10);
 
 end
 

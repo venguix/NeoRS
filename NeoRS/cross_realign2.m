@@ -16,11 +16,10 @@ output=[subject '/Output_files/cross_realignRS'];
 folder=[subject '/Output_files/Motion_Corrected_' num2str(n)];
 mkdir('./',folder);
 
-mcflirt_cmd=['mcflirt -in ' input ' -out ' output ' -sinc_final -mamotion_detrended -plomotion_detrended -refvol 0 -smooth 0'];%-smooth 1 by default
+mcflirt_cmd=['mcflirt -in ' input ' -out ' output ' -sinc_final -refvol 0 -smooth 0 -plots'];%-smooth 1 by default
 system(mcflirt_cmd)
 
-
-system(['mv ' output '.mat ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.mat'])
+%system(['mv ' output '.mat ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.mat'])
 system(['mv ' output '.par ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.par'])
 system(['mv ' output '.nii.gz ' subject '/Output_files/Motion_Corrected_' num2str(n) '/cross_realignRS.nii.gz'])
 

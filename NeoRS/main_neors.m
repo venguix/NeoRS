@@ -5,12 +5,12 @@ clear all; clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
-options.fmap = 1; %Functional distortion correction
+options.fmap = 0; %Functional distortion correction
 
 %Inputs definition
-workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4'); % Path where data is located
-options.TR=0.8;%Repetition time of the RS sequence in seconds
-options.motion=24; %Number of motion parameters-> 6,12 or 24
+workingDir=('/Users/vicenteenguix/Desktop/premasucre_test'); % Path where data is located
+options.TR=3;%Repetition time of the RS sequence in seconds
+options.motion=12; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5; %1: bottom up, 2: top down, 3: interleaved+bottom up, 4: interleaved+top down, 5:automatically read json file
 options.FWHM=6; %FWMH for functional gaussian smoothing
 options.radius=35; %Head radius
@@ -22,17 +22,17 @@ cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
 [data ] = read_data();
-tic
-for i=1:length(data)
+i=1;
+%%
+%for i=1:length(data)
    
     subject=data(i).name;
-    RS=dir([subject '/func/*bold.nii*']);
-    RS(strncmp({RS.name}, '.', 1)) = [];
-    nRS=length(RS);
-
+    
     % MANTIS preparation
-    T2=gunzip_T2(subject)
+    %T2=gunzip_T2(subject)
+    [T2,nRS,RS] = gunzip_data(subject);
 
+    %%
     % Data reorientation to standard
     reorient(subject,RS,nRS,T2)
     % Image Registration - Anatomical to Atlas
@@ -41,7 +41,7 @@ for i=1:length(data)
     [scT2] = skull_stripping( subject )
     % Mantis segmentation
     try
-        segmentation_mantis2(workingDir,subject) %Mantis segmentation (error in mac but still ok)
+        segmentation_mantis2(workingDir,subject); %Mantis segmentation (error in mac but still ok)
     end
 
     % align masks and binarize
@@ -104,6 +104,4 @@ for i=1:length(data)
         display('Subject data is not enough to be processed')
     end
 
-end
-
-toc
+%end

@@ -1,4 +1,9 @@
 function [ ] = fmap2(subject,RS,nRS,options,badRuns,old_nRS)
+
+if options.fmap == 0
+    display('Skipping Unwarping steps')
+else
+    
 %Datain.txt
 %for AP -> [0 -1 0 TotalReadoutTime]
 %for PA -> [0 1 0 TotalReadoutTime]
@@ -14,11 +19,6 @@ datain_file=[subject '/fmap/datain.txt'];
 datain=[ 0 -1 0 readout_time; 0 1 0 readout_time];
 
 dlmwrite(datain_file, datain,'delimiter',' ')
-
-
-if options.fmap == 0
-    display('Skipping Unwarping steps')
-else
 
 % 2.Split nii in 1 volume
 in=dir([subject '/fmap/*nii*']);

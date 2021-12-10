@@ -16,9 +16,9 @@ else
     display('Uncompressing T2 file')
     T2=T2.name(1:end-7); 
     gunzip([subject '/anat/' T2 '.nii.gz']) 
-    unix(['rm ' subject '/anat/' T2 '.nii.gz'])
+    system(['rm ' subject '/anat/' T2 '.nii.gz'])
 end
 
 
-end
 
+end
