@@ -56,7 +56,7 @@ parameters=[Motion_Corrected,onetimebefore,Motion_Corrected.^2,onetimebefore.^2]
 save([motion_folder,'Friston24_motion_parameters.1D'],'parameters','-ascii');
 
 % TIME SERIES FOLDER
-path=([subject '/output_files/']);
+path=([subject '/Output_files/']);
 cd(path)
 
 confounders=['confounders'];
