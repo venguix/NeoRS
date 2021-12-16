@@ -22,9 +22,10 @@ cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
 [data ] = read_data();
-i=1;
+%i=1;
 %%
-%for i=1:length(data)
+tic
+for i=1:length(data)
    
     subject=data(i).name;
     
@@ -32,7 +33,7 @@ i=1;
     %T2=gunzip_T2(subject)
     [T2,nRS,RS] = gunzip_data(subject);
 
-    %%
+    %
     % Data reorientation to standard
     reorient(subject,RS,nRS,T2)
     % Image Registration - Anatomical to Atlas
@@ -58,7 +59,9 @@ i=1;
     end
 
        % REMOVE RUNS WITH mean FD > 0.25 mm
-       [badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
+       %[badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
+       
+       nRS=1;badRuns=0;old_nRS=1; %REMOVE
        
     if nRS > 0     
             % UNWARPING
@@ -104,4 +107,5 @@ i=1;
         display('Subject data is not enough to be processed')
     end
 
-%end
+end
+toc
