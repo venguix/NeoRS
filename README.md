@@ -48,16 +48,19 @@ https://drive.google.com/file/d/1gu7-GqO1x4nY50biMaGpfukvlgnWaGBw/view?usp=shari
 
 [Baby Connectome Project] Howell, B. R., Styner, M. A., Gao, W., Yap, P. T., Wang, L., Baluyot, K., . . . Elison, J. T. (2019). The UNC/UMN Baby Connectome Project (BCP): An overview of the study design and protocol development. Neuroimage, 185, 891-905. doi:10.1016/j.neuroimage.2018.03.049
 
+if you plan to use the BCP data, please contact Dr. Elison (jtelison@umn.edu).
 
 ## Acknowledgements
-We would like to thank the Washington University – School of Medicine for sharing their templates for this project, and Jed Elison for letting us use the neonatal data from the Baby Connectome Project. We would also like to thank the Québec Bio-Imaging Network for supporting VE with studentship and funding for travels. 
+We would like to thank Dr.C Smyser and Dr. J Neil from the Washington University – School of Medicine, in St. Louis Missouri for sharing their templates for this project.
+
+We would also like to thank Dr. Jed Elison for letting us use the neonatal data from the Baby Connectome Project.
 
 
 #### If you used NeoRS in your research please make sure that you reference:
 
-[NeoRS]
+1. [NeoRS]
 
-[Atlases] Smyser, C. D., Inder, T. E., Shimony, J. S., Hill, J. E., Degnan, A. J., Snyder, A. Z., & Neil, J. J. (2010). Longitudinal analysis of neural network development in preterm infants. Cereb Cortex, 20(12), 2852-2862. doi:10.1093/cercor/bhq035
+2. [Atlases] Smyser, C. D., Inder, T. E., Shimony, J. S., Hill, J. E., Degnan, A. J., Snyder, A. Z., & Neil, J. J. (2010). Longitudinal analysis of neural network development in preterm infants. Cereb Cortex, 20(12), 2852-2862. doi:10.1093/cercor/bhq035
 
 
 
