@@ -6,21 +6,24 @@ clear all; clc
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
 options.fmap = 0; %Functional distortion correction
+options.FDaverage = 1;
 
 %Inputs definition
-workingDir=('/Users/vicenteenguix/Desktop/premasucre_test'); % Path where data is located
+workingDir=('/Desktop/Data');%Data directory
 options.TR=3;%Repetition time of the RS sequence in seconds
 options.motion=12; %Number of motion parameters-> 6,12 or 24
-options.slice_order=5; %1: bottom up, 2: top down, 3: interleaved+bottom up, 4: interleaved+top down, 5:automatically read json file
+options.slice_order=5;%1: bottom up, 2: top down, 3: interleaved+bottom up
+% 4: interleaved+top down, 5:automatically read json file
 options.FWHM=6; %FWMH for functional gaussian smoothing
 options.radius=35; %Head radius
 options.FD_max=0.25; % Framewise displacement threshold
+options.BPF=[0.01,0.1]; %Band-pass filter frequencies in Hz
 options.n_core=2; %Number of cores for parallel computing
-%parpool(options.n_core);
 
 cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RUN 
+%parpool(options.n_core);
 [data ] = read_data();
 %i=1;
 %%
@@ -58,10 +61,12 @@ for i=1:length(data)
         [FD,output,motion_detrended,position,mFD_all] = cross_realign2( subject,workingDir,options,RS,n);%  Frame displacement
     end
 
-       % REMOVE RUNS WITH mean FD > 0.25 mm
-       %[badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
-       
-       nRS=1;badRuns=0;old_nRS=1; %REMOVE
+    if options.FDaverage == 1
+      % REMOVE RUNS WITH mean FD > 0.25 mm
+      [badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
+    else
+       badRuns=0; old_nRS=nRS;
+    end
        
     if nRS > 0     
             % UNWARPING

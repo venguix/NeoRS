@@ -97,13 +97,15 @@ cd(workingDir)
 
 %Regression + BPF
 %%%%%%%%% INPUT %%%%%%%%%%% 
-reg_type='Total_24movement.1D';
+%reg_type='Total_24movement.1D';
 %reg_type='Total_6movement.1D';
 %reg_type='Total_12movement.1D';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+reg_type=['Total_' num2str(options.motion) 'movement.1D'];
 
 
-bandpass=[0.01,0.1];
+%bandpass=[0.01,0.1];
+bandpass=options.BPF;
 out2=[subject '/Output_files/filtered_BOLD_' num2str(c) '.nii.gz'];
 
 
