@@ -46,10 +46,11 @@ Note: to setup matlab to be easily opened via terminal:
 ## Data for testing purposes
 https://drive.google.com/file/d/1gu7-GqO1x4nY50biMaGpfukvlgnWaGBw/view?usp=sharing
 
+[Baby Connectome Project] Howell, B. R., Styner, M. A., Gao, W., Yap, P. T., Wang, L., Baluyot, K., . . . Elison, J. T. (2019). The UNC/UMN Baby Connectome Project (BCP): An overview of the study design and protocol development. Neuroimage, 185, 891-905. doi:10.1016/j.neuroimage.2018.03.049
+
+
 ## Acknowledgements
 We would like to thank the Washington University – School of Medicine for sharing their templates for this project, and Jed Elison for letting us use the neonatal data from the Baby Connectome Project. We would also like to thank the Québec Bio-Imaging Network for supporting VE with studentship and funding for travels. 
-
-[Baby Connectome Project] Howell, B. R., Styner, M. A., Gao, W., Yap, P. T., Wang, L., Baluyot, K., . . . Elison, J. T. (2019). The UNC/UMN Baby Connectome Project (BCP): An overview of the study design and protocol development. Neuroimage, 185, 891-905. doi:10.1016/j.neuroimage.2018.03.049
 
 
 #### If you used NeoRS in your research please make sure that you reference:
