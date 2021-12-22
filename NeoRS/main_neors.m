@@ -5,20 +5,20 @@ clear all; clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
-options.fmap = 0; %Functional distortion correction
+options.fmap = 1; %Functional distortion correction
 options.FDaverage = 1;
 
 %Inputs definition
-workingDir=('/Desktop/Data');%Data directory
-options.TR=3;%Repetition time of the RS sequence in seconds
-options.motion=12; %Number of motion parameters-> 6,12 or 24
+workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4');%Data directory
+options.TR=0.72;%Repetition time of the RS sequence in seconds
+options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5;%1: bottom up, 2: top down, 3: interleaved+bottom up
 % 4: interleaved+top down, 5:automatically read json file
 options.FWHM=6; %FWMH for functional gaussian smoothing
 options.radius=35; %Head radius
 options.FD_max=0.25; % Framewise displacement threshold
 options.BPF=[0.01,0.1]; %Band-pass filter frequencies in Hz
-options.n_core=2; %Number of cores for parallel computing
+%options.n_core=2; %Number of cores for parallel computing
 
 cd (workingDir)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
