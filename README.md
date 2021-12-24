@@ -51,7 +51,7 @@ https://drive.google.com/file/d/1gu7-GqO1x4nY50biMaGpfukvlgnWaGBw/view?usp=shari
 if you plan to use the BCP data, please contact Dr. Elison (jtelison@umn.edu).
 
 ## Acknowledgements
-We would like to thank Dr. C Smyser and Dr. J Neil from the Washington University – School of Medicine, in St. Louis Missouri for sharing their templates for this project.
+We would like to thank Dr. C Smyser, Dr. J Neil and Dr. C Rogers from the Washington University – School of Medicine, for sharing their regions-of-interest for this project.
 
 We would also like to thank Dr. J Elison for letting us use the neonatal data from the Baby Connectome Project.
 
