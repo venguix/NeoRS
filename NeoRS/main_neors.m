@@ -25,10 +25,10 @@ cd (workingDir)
 %% RUN 
 %parpool(options.n_core);
 [data ] = read_data();
-%i=1;
+i=1;
 %%
 tic
-for i=1:length(data)
+%for i=1:length(data)
    
     subject=data(i).name;
     
@@ -112,5 +112,5 @@ for i=1:length(data)
         display('Subject data is not enough to be processed')
     end
 
-end
+%end
 toc

@@ -19,8 +19,8 @@ nRS=length(RS);
 for n=1:nRS
 [p,f,e]=fileparts(RS(n).name);
 try
-gunzip([subject '/func/' f '.nii.gz'])
-system(['rm ' subject '/func/' f '.nii.gz'])
+gunzip([subject '/func/' f '.gz'])
+system(['rm ' subject '/func/' f '.gz'])
 end
 display('Uncompressed BOLD')
 

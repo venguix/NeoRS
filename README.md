@@ -60,7 +60,7 @@ We would also like to thank Dr. J Elison for letting us use the neonatal data fr
 
 1. [NeoRS]
 
-2. [Atlases] Smyser, C. D., Inder, T. E., Shimony, J. S., Hill, J. E., Degnan, A. J., Snyder, A. Z., & Neil, J. J. (2010). Longitudinal analysis of neural network development in preterm infants. Cereb Cortex, 20(12), 2852-2862. doi:10.1093/cercor/bhq035
+2. [Seeds] Smyser, C. D., Snyder, A. Z., Shimony, J. S., Mitra, A., Inder, T. E., & Neil, J. J. (2016). Resting-State Network Complexity and Magnitude Are Reduced in Prematurely Born Infants. Cereb Cortex, 26(1), 322-333. doi:10.1093/cercor/bhu251
 
 
 
