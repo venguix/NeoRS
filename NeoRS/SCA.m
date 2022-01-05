@@ -28,7 +28,7 @@ name=[output '/SCA_' seed ];
 save_avw(out,name,'f',[2 2 2 1])
 ref_path=ref;
 cmd=['/usr/local/fsl/bin/fslcpgeom ' ref_path ' ' name];
-system(cmd)
+system(cmd);
 
 %p-value from z-score ->VTE
 p_one = 2*normcdf(out);

@@ -31,7 +31,12 @@ if options.slicetimingcorrection == 1
         system(command);
         display(['Successful slice timing correction option 4 Run ' num2str(n)])
     elseif options.slice_order==5 %custom
-        slc_name=RS(n).name(1:end-4);%CORREGIR
+        [filepath,name,ext] = fileparts(RS(n).name);
+        if length(ext) == 3
+        slc_name=RS(n).name(1:end-7);
+        else
+        slc_name=RS(n).name(1:end-4);
+        end
         fileName = [subject '/func/' slc_name '.json']; % filename in JSON extension
         json_file = loadjson(fileName); % dedicated for reading files as text
         slicetiming=json_file.SliceTiming';

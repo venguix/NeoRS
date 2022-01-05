@@ -1,4 +1,4 @@
-function [ ] = fmap2(subject,RS,nRS,options,badRuns,old_nRS)
+function [ ] = fmap2(subject,RS,options,badRuns,old_nRS)
 
 if options.fmap == 0
     display('Skipping Unwarping steps')
@@ -48,7 +48,7 @@ out_b0=[subject '/fmap/b0'];
 cmd=['fslmerge -t ' out_b0 ' ' out_AP ' ' out_PA ];
 system(cmd)
 
-% 4. Topup
+% 4. Topup % Need a nb. of pixels even
 datain=[subject '/fmap/datain.txt'];
 fout=[subject '/fmap/myfieldmap'];
 iout=[subject '/fmap/se_epi_unwarped'];

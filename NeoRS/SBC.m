@@ -12,6 +12,8 @@ seed=['vol' num2str(aa)]
 %Extract timeseries of the seed
 Extract_timeseries_cmd=['fslmeants -i ' input ' -o ' output_t filesep seed '_timecourse.txt -m ' ROI filesep seed '_bin'];
 system(Extract_timeseries_cmd)
+
+
 %SBC
 ts=[output_t filesep seed '_timecourse.txt'];
 [out]=SCA(ts,input,ref,seed,output);

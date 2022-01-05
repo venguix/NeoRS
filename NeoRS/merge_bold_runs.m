@@ -6,8 +6,9 @@ c=size(processed,1);
 
 if c == nRS
    display('All runs were successfully processed')
+
  if nRS == 1
-  cmd=(['mv ' subject '/Output_files/final_BOLD1.nii.gz ' subject '/Output_files/final_BOLD.nii.gz']);
+  cmd=(['mv ' subject '/Output_files/' processed.name ' ' subject '/Output_files/final_BOLD.nii.gz']);
   system(cmd)
   display(['Total number of runs ' num2str(nRS)])
  end

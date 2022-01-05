@@ -5,12 +5,12 @@ clear all; clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
-options.fmap = 1; %Functional distortion correction
-options.FDaverage = 1;
+options.fmap = 0; %Functional distortion correction
+options.FDaverage = 0; % 1 to remove runs with average FD > 0.25
 
 %Inputs definition
-workingDir=('/Volumes/TOSHIBA_HD/BCP_babies_processed_4');%Data directory
-options.TR=0.72;%Repetition time of the RS sequence in seconds
+workingDir=('/Users/vicenteenguix/Desktop/Premasucre_RS/high_motion');%Data directory
+options.TR=3;%Repetition time of the RS sequence in seconds
 options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5;%1: bottom up, 2: top down, 3: interleaved+bottom up
 % 4: interleaved+top down, 5:automatically read json file
@@ -25,10 +25,10 @@ cd (workingDir)
 %% RUN 
 %parpool(options.n_core);
 [data ] = read_data();
-i=1;
+%i=2;
 %%
 tic
-%for i=1:length(data)
+for i=2:7%length(data)
    
     subject=data(i).name;
     
@@ -36,7 +36,7 @@ tic
     %T2=gunzip_T2(subject)
     [T2,nRS,RS] = gunzip_data(subject);
 
-    %
+    
     % Data reorientation to standard
     reorient(subject,RS,nRS,T2)
     % Image Registration - Anatomical to Atlas
@@ -65,17 +65,18 @@ tic
       % REMOVE RUNS WITH mean FD > 0.25 mm
       [badRuns,nRS,old_nRS] = remove_high_motion( subject,RS )
     else
-       badRuns=0; old_nRS=nRS;
+      old_nRS=nRS; badRuns(1:nRS)=0;
     end
        
     if nRS > 0     
             % UNWARPING
             % -inindex: 1 for AP, 2 for PA
-            fmap2(subject,RS,nRS,options,badRuns,old_nRS) %remember to put the "datain.txt" in the fmap folder if there is no json file
+            fmap2(subject,RS,options,badRuns,old_nRS) %remember to put the "datain.txt" in the fmap folder if there is no json file
             % BOLD to template
             epi2std2(subject,old_nRS,options,badRuns)
-            %epi2std(subject,old_nRS,options,badRuns)
-        
+            %epi2std(subject,old_nRS,options)
+            %epi2std_2step(subject,old_nRS,options,badRuns,T2)
+            
             % DENOISING
             for n=1:old_nRS
                 if badRuns(n) == 0
@@ -107,10 +108,13 @@ tic
 
         % MERGE SEEDS
         merge_seeds( subject )
+        
+       % FC distribution plot
+         FC_distribut(subject);
  
-    else
+   else
         display('Subject data is not enough to be processed')
     end
 
-%end
+end
 toc

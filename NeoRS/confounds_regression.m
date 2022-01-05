@@ -14,11 +14,14 @@ BOLD_mean_cmd=['fslmaths ' input ' -Tmean ' mean];
 system(BOLD_mean_cmd)
 
 %create time series txt files
-csf_in=[subject '/Output_files/masks/CSF_mask.nii.gz']; % no Eroded
-%csf_in=[subject '/Output_files/masks/CSF_mask_eroded.nii.gz'];
+csf_in=[subject '/Output_files/masks/CSF_mask.nii.gz']; %  Eroded
+%csf_in=[subject '/Output_files/masks/CSF_mask_eroded.nii.gz']; % eroded in
+%3mm
 csf_out=[subject '/Output_files/csf.1D'];
 
-wm_in=[subject '/Output_files/masks/WM_mask_eroded.nii.gz']; % Eroded
+%wm_in=[subject '/Output_files/masks/WM_mask_eroded.nii.gz']; % Eroded in
+%3mm
+wm_in=[subject '/Output_files/masks/WM_mask.nii.gz']
 wm_out=[subject '/Output_files/wm.1D'];
 
 global_in=[subject '/Output_files/masks/gm_mask.nii.gz'];
@@ -90,7 +93,7 @@ system(['1dcat csf_wm.1D global.1D > csf_wm_global.1D']); %csf+wm+global signal
 system(['1dcat csf_wm_global.1D motion.1D > Total_6movement.1D']); %csf+wm+global+6 motion
 
 system(['1dcat global.1D motion.1D > global_motion.1D']); 
-system(['1dcat global.1D motion.1D csf.1D > no_wm.1D']);
+system(['1dcat wm.1D Friston24_motion_parameters.1D csf.1D > no_gm.1D']); % NO GSR
 system(['1dcat csf_wm_global.1D 12_motion_parameters.1D > Total_12movement.1D']); %csf+wm+global+12 motion
 system(['1dcat csf_wm_global.1D Friston24_motion_parameters.1D > Total_24movement.1D']);%csf+wm+global+24 motion
 cd(workingDir)
@@ -101,7 +104,8 @@ cd(workingDir)
 %reg_type='Total_6movement.1D';
 %reg_type='Total_12movement.1D';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-reg_type=['Total_' num2str(options.motion) 'movement.1D'];
+reg_type=['Total_' num2str(options.motion) 'movement.1D']; %GSR
+%reg_type=['no_gm.1D']; %NO GSR 24 motion
 
 
 %bandpass=[0.01,0.1];
@@ -114,7 +118,7 @@ path2=[path,confounders2 '/' reg_type]; %FSL motion censoring
 
 
 %command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz -dt ' num2str(TR)];
-command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz'];
+command10=['3dTproject -ort ' path2 ' -prefix ' out2 ' -passband ',num2str(bandpass(1)),' ',num2str(bandpass(2)),' -input ',input,'.nii.gz -overwrite'];
 system(command10);
 
 end

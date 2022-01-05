@@ -1,4 +1,4 @@
-function [ ] = epi2std(subject, nRS,options)
+function [ ] = epi2std(subject, old_nRS,options)
 
 for c=1:old_nRS   
   if badRuns(c) == 0 
@@ -31,7 +31,7 @@ folder_bold_aligned_cmd=['mkdir ' output2];
 system(folder_bold_aligned_cmd)
  
 tic
- parfor ii=1:length(n)
+ for ii=1:length(n)
  align_cmd=(['flirt -in ' input2 filesep n(ii).name ' -ref ' reference '  -out ' output2 '/RS_' num2str(ii) ' -dof 12 -noresampblur']);
  system(align_cmd)
  end  
