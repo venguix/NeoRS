@@ -38,7 +38,6 @@ Note: to setup matlab to be easily opened via terminal:
 
 ## NeoRS workflow
 ![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/workflow.png)
-![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/chat.jpg)
 
 ## Example final results
 ### Seed-Based Correlations
