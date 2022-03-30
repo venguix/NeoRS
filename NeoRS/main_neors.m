@@ -109,8 +109,6 @@ for i=2:7%length(data)
         % MERGE SEEDS
         merge_seeds( subject )
         
-       % FC distribution plot
-         FC_distribut(subject);
  
    else
         display('Subject data is not enough to be processed')
