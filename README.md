@@ -37,7 +37,7 @@ Note: to setup matlab to be easily opened via terminal:
   - You can now RUN Neors
 
 ## NeoRS workflow
-[alt tag](https://github.com/venguix/NeoRS/blob/main/doc/workflow.png)
+![alt tag](https://github.com/venguix/NeoRS/blob/main/doc/workflow.png)
 
 ## Example final results
 ### Seed-Based Correlations
