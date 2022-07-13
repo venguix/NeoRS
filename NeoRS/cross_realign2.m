@@ -54,7 +54,7 @@ legend('x','y','z')
 title('Estimated translation (mm)')
 
 subplot(3,1,3),
-plot(FD,'-b'),title('Framewise Displacement'),legend('FD')
+plot(FD,'-b'),title('Framewise displacement'),legend('FD')
 
 
 % Number of frames with lower FD than 0.25 mm 

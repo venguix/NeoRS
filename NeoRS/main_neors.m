@@ -5,12 +5,12 @@ clear all; clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Activate or deactivate functions: 1=On; 0=Off
 options.slicetimingcorrection=1; %Slice timing correction
-options.fmap = 0; %Functional distortion correction
-options.FDaverage = 0; % 1 to remove runs with average FD > 0.25
+options.fmap = 1; %Functional distortion correction
+options.FDaverage = 1; % 1 to remove runs with average FD > 0.25
 
 %Inputs definition
-workingDir=('/Users/vicenteenguix/Desktop/Premasucre_RS/high_motion');%Data directory
-options.TR=3;%Repetition time of the RS sequence in seconds
+workingDir=('/Users/vicenteenguix/Desktop/BCP_data_test/dataset');%Data directory
+options.TR=0.72;%Repetition time of the RS sequence in seconds
 options.motion=24; %Number of motion parameters-> 6,12 or 24
 options.slice_order=5;%1: bottom up, 2: top down, 3: interleaved+bottom up
 % 4: interleaved+top down, 5:automatically read json file
@@ -25,10 +25,10 @@ cd (workingDir)
 %% RUN 
 %parpool(options.n_core);
 [data ] = read_data();
-%i=2;
+%i=1;
 %%
 tic
-for i=2:7%length(data)
+for i=1:length(data)
    
     subject=data(i).name;
     

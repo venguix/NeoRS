@@ -41,9 +41,9 @@ colorbar
 
 tickvalues = 1:31;
 x = zeros(size(tickvalues));
-text(x, tickvalues, myLabel, 'HorizontalAlignment', 'right');
+text(x, tickvalues, myLabel, 'HorizontalAlignment', 'right','FontSize', 8);
 x(:) = length(C)+1;
-text(tickvalues, x, myLabel, 'HorizontalAlignment', 'right','Rotation',60);
+text(tickvalues, x, myLabel, 'HorizontalAlignment', 'right','Rotation',60,'FontSize', 8);
 
 title('Correlation Matrix', 'FontSize', 12); % set title
 axis off
