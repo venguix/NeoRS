@@ -58,9 +58,9 @@ We would also like to thank Dr. J Elison for letting us use the neonatal data fr
 
 #### If you used NeoRS in your research please make sure that you reference:
 
-1. [NeoRS]
+1. [NeoRS] Enguix V., et al. (2022) NeoRS: A Neonatal Resting State fMRI Data Preprocessing Pipeline. Front Neuroinform. doi: 10.3389/fninf.2022.843114
 
-2. [Seeds] Smyser, C. D., Snyder, A. Z., Shimony, J. S., Mitra, A., Inder, T. E., & Neil, J. J. (2016). Resting-State Network Complexity and Magnitude Are Reduced in Prematurely Born Infants. Cereb Cortex, 26(1), 322-333. doi:10.1093/cercor/bhu251
+2. [Seeds] Smyser C et al. (2016). Resting-State Network Complexity and Magnitude Are Reduced in Prematurely Born Infants. Cereb Cortex. doi:10.1093/cercor/bhu251
 
 
 
